@@ -16,7 +16,6 @@
   TCanvas* c1 = new TCanvas("c1", "", 0, 0, 500, 500);
   
   // Draw Eabs histogram in the pad 1
-  c1->cd(1);
   TH1D* hist1 = (TH1D*)f.Get("Eabsgap");
   hist1->Draw("HIST");
 }

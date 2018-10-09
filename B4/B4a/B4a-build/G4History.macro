@@ -24,3 +24,20 @@
 /vis/viewer/set/autoRefresh true
 /vis/viewer/refresh
 /vis/verbose warnings
+/control/execute changecolor.mac
+/vis/modeling/trajectories/create/drawByParticleID viewer-0
+/vis/modeling/trajectories/viewer-0/set gamma red
+/vis/scene/notifyHandlers scene-0
+/vis/modeling/trajectories/viewer-0/set anti_nu_e blue
+/vis/scene/notifyHandlers scene-0
+/vis/modeling/trajectories/viewer-0/set nu_mu green
+/vis/scene/notifyHandlers scene-0
+/vis/modeling/trajectories/viewer-0/set e- cyan
+/vis/scene/notifyHandlers scene-0
+/control/execute muon.mac
+/run/initialize
+/gun/particle mu-
+/gun/position 0 0 0 mm
+/gun/energy 0 MeV
+/run/beamOn 10000
+/vis/scene/notifyHandlers scene-0
