@@ -1,0 +1,5 @@
+/run/initialize
+/gun/particle mu-
+/gun/position 0 0 0 mm
+/gun/energy 0 MeV
+/run/beamOn 1

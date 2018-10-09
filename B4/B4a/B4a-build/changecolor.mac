@@ -1,0 +1,5 @@
+/vis/modeling/trajectories/create/drawByParticleID viewer-0
+/vis/modeling/trajectories/viewer-0/set gamma red
+/vis/modeling/trajectories/viewer-0/set anti_nu_e blue
+/vis/modeling/trajectories/viewer-0/set nu_mu green
+/vis/modeling/trajectories/viewer-0/set e- cyan

@@ -1,0 +1,7 @@
+/home/sota/g4work/B4/B4b/B4b-build/CMakeFiles/install/strip.dir
+/home/sota/g4work/B4/B4b/B4b-build/CMakeFiles/edit_cache.dir
+/home/sota/g4work/B4/B4b/B4b-build/CMakeFiles/exampleB4b.dir
+/home/sota/g4work/B4/B4b/B4b-build/CMakeFiles/rebuild_cache.dir
+/home/sota/g4work/B4/B4b/B4b-build/CMakeFiles/list_install_components.dir
+/home/sota/g4work/B4/B4b/B4b-build/CMakeFiles/install/local.dir
+/home/sota/g4work/B4/B4b/B4b-build/CMakeFiles/install.dir
