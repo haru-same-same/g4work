@@ -127,7 +127,7 @@ G4VPhysicalVolume* B4DetectorConstruction::DefineVolumes()
   
   // Get materials
   auto defaultMaterial = G4Material::GetMaterial("Galactic");
-  auto absorberMaterial = G4Material::GetMaterial("G4_PLASTIC_SC_VINYLTOLUENE");
+  auto absorberMaterial = G4Material::GetMaterial("G4_Pb");
   auto gapMaterial = G4Material::GetMaterial("G4_PLASTIC_SC_VINYLTOLUENE");
   
   if ( ! defaultMaterial || ! absorberMaterial || ! gapMaterial ) {
