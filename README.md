@@ -8,6 +8,7 @@ Particulary, this program focusing on the event that particle(ex.mu-) decays at 
 - Ubuntu 18.04 LTS  
 - Geant4 v4.10.04-p02  
 - ROOT 6.14.04
+- zsh
 
 ## Usage
 
@@ -16,7 +17,9 @@ In order to change the position of particle gun easily, I commented out
 in g4work/B4/B4a/src/B4PrimaryGeneratorAction.cc line 101.  
 Therefore ,firstly you should set gun position in your macro file like  
 `/gun/position 0 0 0 m`.  
-
+Or you can use muon.mac included in this project.  
+If you can use ROOT, it is easy to show results graphically by using run.sh included in this project.  
+This script firstly runs muon.mac, then displays histogram of energy deposit in Gap+Absorber by using ROOT.
 
 ## What I changed before first commit
 
@@ -72,5 +75,3 @@ to line 90.
 `<< G4BestUnit(fTrackLAbs+fTrackLGap,"Length")`  
 `<< G4endl;`  
 to line 109.
-
-Under construction...
