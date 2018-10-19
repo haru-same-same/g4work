@@ -7,7 +7,7 @@ Particulary, this program focusing on the event that particle(ex.mu-) decays at 
 
 - Ubuntu 18.04 LTS  
 - Geant4 v4.10.04-p02  
-- ROOT 6.14.04
+- ROOT v6.14.04
 - zsh
 
 ## Usage
@@ -15,7 +15,7 @@ Particulary, this program focusing on the event that particle(ex.mu-) decays at 
 In order to change the position of particle gun easily, I commented out  
 `fParticleGun->SetParticlePosition(G4ThreeVector(0., 0., -worldZHalfLength));`  
 in g4work/B4/B4a/src/B4PrimaryGeneratorAction.cc line 101.  
-Therefore ,firstly you should set gun position in your macro file like  
+Therefore, firstly you should set gun position in your macro file like  
 `/gun/position 0 0 0 m`.  
 Or you can use muon.mac included in this project.  
 If you can use ROOT, it is easy to show results graphically by using run.sh included in this project.  
