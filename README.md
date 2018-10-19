@@ -1,13 +1,22 @@
 # Sampling calorimeter simulation program on Geant4
 
 This program is sampling calorimeter simulation program based on Geant4-ExampleB4a.  
-Particulary,this program focusing on the event that particle(ex.mu-) decays at the center of the box constituted by scintillators and absorbers.  
+Particulary, this program focusing on the event that particle(ex.mu-) decays at the center of the box constituted by scintillators and absorbers.  
 
 ## Testing environment
 
 - Ubuntu 18.04 LTS  
 - Geant4 v4.10.04-p02  
 - ROOT 6.14.04
+
+## Usage
+
+In order to change the position of particle gun easily, I commented out  
+`fParticleGun->SetParticlePosition(G4ThreeVector(0., 0., -worldZHalfLength));`  
+in g4work/B4/B4a/src/B4PrimaryGeneratorAction.cc line 101.  
+Therefore ,firstly you should set gun position in your macro file like  
+`/gun/position 0 0 0 m`.  
+
 
 ## What I changed before first commit
 
@@ -45,5 +54,23 @@ to line 76.
 `<< G4BestUnit(analysisManager->GetH1(4)->rms(), "Energy") << G4endl;`  
 to line 137.
 
+### g4work/B4/B4a/src/B4aEventAction.cc
+
+- Add  
+`analysisManager->FillH1(4, fEnergyAbs+fEnergyGap);`  
+`analysisManager->FillH1(5, fTrackLAbs+fTrackLGap);`  
+to line 83.  
+- Add  
+`analysisManager->FillNtupleDColumn(4, fEnergyAbs+fEnergyGap);`  
+`analysisManager->FillNtupleDColumn(5, fTrackLAbs+fTrackLGap);`  
+to line 90.  
+- Add  
+`G4cout`  
+`<< "     AbsGap: total energy: " << std::setw(7)`  
+`<< G4BestUnit(fEnergyAbs+fEnergyGap,"Energy")`  
+`<< "       total track length: " << std::setw(7)`  
+`<< G4BestUnit(fTrackLAbs+fTrackLGap,"Length")`  
+`<< G4endl;`  
+to line 109.
 
 Under construction...
