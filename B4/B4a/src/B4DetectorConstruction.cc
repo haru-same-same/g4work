@@ -60,6 +60,7 @@ G4GlobalMagFieldMessenger* B4DetectorConstruction::fMagFieldMessenger = nullptr;
 
 B4DetectorConstruction::B4DetectorConstruction()
  : G4VUserDetectorConstruction(),
+   fvetoboxPV(nullptr),
    fAbsorberPV(nullptr),
    fGapPV(nullptr),
    fCheckOverlaps(true)
@@ -122,8 +123,8 @@ G4VPhysicalVolume* B4DetectorConstruction::DefineVolumes()
 
   auto layerThickness = absoThickness + gapThickness;
   auto calorThickness = nofLayers * layerThickness;
-  auto worldSizeXY = 30*cm;
-  auto worldSizeZ  = 30*cm; 
+  auto worldSizeXY = 50*cm;
+  auto worldSizeZ  = 50*cm; 
   
   // Get materials
   auto defaultMaterial = G4Material::GetMaterial("Galactic");
@@ -161,6 +162,30 @@ G4VPhysicalVolume* B4DetectorConstruction::DefineVolumes()
                  0,                // copy number
                  fCheckOverlaps);  // checking overlaps 
   
+  //
+  //veto
+  //
+  auto vetobox
+    = new G4Box("vetobox",
+                 15*cm,15*cm,15*cm);
+ 
+  auto vetoboxLV
+    = new G4LogicalVolume(
+                 vetobox,
+                 absorberMaterial,
+                 "vetobox");
+ 
+  auto vetoboxPV
+    = new G4PVPlacement(
+                 0,
+                 G4ThreeVector(),
+                 vetoboxLV,
+                 "vetobox",
+                 worldLV,
+                 false,
+                 0,
+                 fCheckOverlaps);
+
   //                               
   // Calorimeter
   //  
@@ -179,7 +204,7 @@ G4VPhysicalVolume* B4DetectorConstruction::DefineVolumes()
                  G4ThreeVector(),  // at (0,0,0)
                  calorLV,          // its logical volume                         
                  "Calorimeter",    // its name
-                 worldLV,          // its mother  volume
+                 vetoboxLV,          // its mother  volume
                  false,            // no boolean operation
                  0,                // copy number
                  fCheckOverlaps);  // checking overlaps 

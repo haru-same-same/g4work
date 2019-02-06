@@ -45,8 +45,10 @@ B4aEventAction::B4aEventAction()
  : G4UserEventAction(),
    fEnergyAbs(0.),
    fEnergyGap(0.),
+   fEnergyvetobox(0.),
    fTrackLAbs(0.),
-   fTrackLGap(0.)
+   fTrackLGap(0.),
+   fTrackLvetobox(0.)
 {}
 
 //....oooOO0OOooo........oooOO0OOooo........oooOO0OOooo........oooOO0OOooo......
@@ -61,8 +63,10 @@ void B4aEventAction::BeginOfEventAction(const G4Event* /*event*/)
   // initialisation per event
   fEnergyAbs = 0.;
   fEnergyGap = 0.;
+  fEnergyvetobox = 0.;
   fTrackLAbs = 0.;
   fTrackLGap = 0.;
+  fTrackLvetobox = 0.;
 }
 
 //....oooOO0OOooo........oooOO0OOooo........oooOO0OOooo........oooOO0OOooo......
