@@ -86,6 +86,8 @@ void B4aEventAction::EndOfEventAction(const G4Event* event)
   analysisManager->FillH1(3, fTrackLGap);
   analysisManager->FillH1(4, fEnergyAbs+fEnergyGap);
   analysisManager->FillH1(5, fTrackLAbs+fTrackLGap);
+  analysisManager->FillH1(6, fEnergyvetobox);
+  analysisManager->FillH1(7, fTrackLvetobox);
 
   // fill ntuple
   analysisManager->FillNtupleDColumn(0, fEnergyAbs);
@@ -94,6 +96,8 @@ void B4aEventAction::EndOfEventAction(const G4Event* event)
   analysisManager->FillNtupleDColumn(3, fTrackLGap);
   analysisManager->FillNtupleDColumn(4, fEnergyAbs+fEnergyGap);
   analysisManager->FillNtupleDColumn(5, fTrackLAbs+fTrackLGap);
+  analysisManager->FillNtupleDColumn(6, fEnergyvetobox);
+  analysisManager->FillNtupleDColumn(7, fTrackLvetobox);
   analysisManager->AddNtupleRow();  
   
   // Print per event (modulo n)
@@ -119,6 +123,12 @@ void B4aEventAction::EndOfEventAction(const G4Event* event)
                                         << G4BestUnit(fEnergyAbs+fEnergyGap,"Energy")
        << "       total track length: " << std::setw(7)
                                         << G4BestUnit(fTrackLAbs+fTrackLGap,"Length")
+       << G4endl;
+    G4cout
+       << "     Veto: total energy: " << std::setw(7)
+                                        << G4BestUnit(fEnergyvetobox,"Energy")
+       << "       total track length: " << std::setw(7)
+                                        << G4BestUnit(fTrackLvetobox,"Length")
        << G4endl;
   }
 }  

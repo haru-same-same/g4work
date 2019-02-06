@@ -67,6 +67,8 @@ B4RunAction::B4RunAction()
   analysisManager->CreateH1("Lgap","trackL in gap", 100, 0., 10*cm);
   analysisManager->CreateH1("Eabsgap","Edep in abs+gap" , 100, 0. ,70*MeV);
   analysisManager->CreateH1("Labsgap","trackL in abs+gap" , 100, 0., 10*cm);
+  analysisManager->CreateH1("Evetobox","Edep in vetobox" , 100, 0. ,70*MeV);
+  analysisManager->CreateH1("Lvetobox","trackL in vetobox" , 100, 0., 10*cm);
 
   // Creating ntuple
   //
@@ -77,6 +79,8 @@ B4RunAction::B4RunAction()
   analysisManager->CreateNtupleDColumn("Lgap");
   analysisManager->CreateNtupleDColumn("Eabsgap");
   analysisManager->CreateNtupleDColumn("Labsgap");
+  analysisManager->CreateNtupleDColumn("Evetobox");
+  analysisManager->CreateNtupleDColumn("Lvetobox");
   analysisManager->FinishNtuple();
 }
 
@@ -144,11 +148,20 @@ void B4RunAction::EndOfRunAction(const G4Run* /*run*/)
       << " rms = " 
       << G4BestUnit(analysisManager->GetH1(4)->rms(),  "Energy") << G4endl;
 
-   /* G4cout << " Labsgap : mean = " 
+    G4cout << " Labsgap : mean = " 
       << G4BestUnit(analysisManager->GetH1(5)->mean(), "Length") 
       << " rms = " 
       << G4BestUnit(analysisManager->GetH1(5)->rms(),  "Length") << G4endl;
-    */
+    
+    G4cout << " Evetobox : mean = " 
+      << G4BestUnit(analysisManager->GetH1(6)->mean(), "Energy") 
+      << " rms = " 
+      << G4BestUnit(analysisManager->GetH1(6)->rms(),  "Energy") << G4endl;
+
+    G4cout << " Lvetobox : mean = " 
+      << G4BestUnit(analysisManager->GetH1(7)->mean(), "Length") 
+      << " rms = " 
+      << G4BestUnit(analysisManager->GetH1(7)->rms(),  "Length") << G4endl;
       }
 
   // save histograms & ntuple

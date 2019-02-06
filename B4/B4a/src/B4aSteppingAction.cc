@@ -67,13 +67,17 @@ void B4aSteppingAction::UserSteppingAction(const G4Step* step)
   if ( step->GetTrack()->GetDefinition()->GetPDGCharge() != 0. ) {
     stepLength = step->GetStepLength();
   }
-      
+  
   if ( volume == fDetConstruction->GetAbsorberPV() ) {
     fEventAction->AddAbs(edep,stepLength);
   }
   
   if ( volume == fDetConstruction->GetGapPV() ) {
     fEventAction->AddGap(edep,stepLength);
+  }
+ 
+  if ( volume == fDetConstruction->GetvetoboxPV() ) {
+    fEventAction->Addvetobox(edep,stepLength);
   }
 }
 

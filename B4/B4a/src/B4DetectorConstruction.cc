@@ -116,7 +116,7 @@ void B4DetectorConstruction::DefineMaterials()
 G4VPhysicalVolume* B4DetectorConstruction::DefineVolumes()
 {
   // Geometry parameters
-  G4int nofLayers = 25;
+  G4int nofLayers = 13;
   G4double absoThickness = 2.*mm;
   G4double gapThickness =  2.*mm;
   G4double calorSizeXY  = 20.*cm;
@@ -175,8 +175,8 @@ G4VPhysicalVolume* B4DetectorConstruction::DefineVolumes()
                  absorberMaterial,
                  "vetobox");
  
-  auto vetoboxPV
-    = new G4PVPlacement(
+  fvetoboxPV
+    =new G4PVPlacement(
                  0,
                  G4ThreeVector(),
                  vetoboxLV,
