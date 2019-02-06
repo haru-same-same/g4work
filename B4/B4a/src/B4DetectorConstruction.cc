@@ -115,19 +115,19 @@ void B4DetectorConstruction::DefineMaterials()
 G4VPhysicalVolume* B4DetectorConstruction::DefineVolumes()
 {
   // Geometry parameters
-  G4int nofLayers = 500;
+  G4int nofLayers = 25;
   G4double absoThickness = 2.*mm;
   G4double gapThickness =  2.*mm;
-  G4double calorSizeXY  = 200.*cm;
+  G4double calorSizeXY  = 20.*cm;
 
   auto layerThickness = absoThickness + gapThickness;
   auto calorThickness = nofLayers * layerThickness;
-  auto worldSizeXY = 1.2 * calorSizeXY;
-  auto worldSizeZ  = 1.2 * calorThickness; 
+  auto worldSizeXY = 30*cm;
+  auto worldSizeZ  = 30*cm; 
   
   // Get materials
   auto defaultMaterial = G4Material::GetMaterial("Galactic");
-  auto absorberMaterial = G4Material::GetMaterial("G4_Pb");
+  auto absorberMaterial = G4Material::GetMaterial("G4_PLASTIC_SC_VINYLTOLUENE");
   auto gapMaterial = G4Material::GetMaterial("G4_PLASTIC_SC_VINYLTOLUENE");
   
   if ( ! defaultMaterial || ! absorberMaterial || ! gapMaterial ) {
