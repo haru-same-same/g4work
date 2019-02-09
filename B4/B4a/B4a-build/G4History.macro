@@ -24,3 +24,5 @@
 /vis/viewer/set/autoRefresh true
 /vis/viewer/refresh
 /vis/verbose warnings
+/vis/viewer/set/viewpointThetaPhi 70 20
+/vis/viewer/refresh
