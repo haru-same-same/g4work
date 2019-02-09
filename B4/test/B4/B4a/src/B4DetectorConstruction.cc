@@ -115,8 +115,8 @@ G4VPhysicalVolume* B4DetectorConstruction::DefineVolumes()
   // Geometry parameters
   G4int nofLayers = 1;
   G4double absoThickness = 0.01*mm;
-  G4double gapThickness = 200.*cm;
-  G4double calorSizeXY  = 200.*cm;
+  G4double gapThickness = 40.*cm;
+  G4double calorSizeXY  = 40.*cm;
 
   auto layerThickness = absoThickness + gapThickness;
   auto calorThickness = nofLayers * layerThickness;

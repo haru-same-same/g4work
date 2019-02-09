@@ -54,13 +54,16 @@ class B4aEventAction : public G4UserEventAction
     void AddAbs(G4double de, G4double dl);
     void AddGap(G4double de, G4double dl);
     void Addvetobox(G4double de, G4double dl);
+    void Addcalorbox3(G4double de, G4double dl);
     
   private:
     G4double  fEnergyAbs;
     G4double  fEnergyGap;
+    G4double  fEnergycalorbox3;
     G4double  fEnergyvetobox;
     G4double  fTrackLAbs; 
     G4double  fTrackLGap;
+    G4double  fTrackLcalorbox3;
     G4double  fTrackLvetobox;
 };
 
@@ -79,6 +82,10 @@ inline void B4aEventAction::AddGap(G4double de, G4double dl) {
 inline void B4aEventAction::Addvetobox(G4double de, G4double dl) {
   fEnergyvetobox += de; 
   fTrackLvetobox += dl;
+}
+inline void B4aEventAction::Addcalorbox3(G4double de, G4double dl) {
+  fEnergycalorbox3 += de; 
+  fTrackLcalorbox3 += dl;
 }
 //....oooOO0OOooo........oooOO0OOooo........oooOO0OOooo........oooOO0OOooo......
 

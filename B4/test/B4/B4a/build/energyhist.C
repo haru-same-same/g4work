@@ -2,7 +2,7 @@
 {
 gROOT->Reset();
 
-TFile f("sc_3mx3m.root");
+TFile f("B4.root");
 
 TCanvas* c1 = new TCanvas("c1","",0,0,700,600);
 c1->DrawFrame(0,0,70,3500);

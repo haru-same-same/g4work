@@ -79,6 +79,10 @@ void B4aSteppingAction::UserSteppingAction(const G4Step* step)
   if ( volume == fDetConstruction->GetvetoboxPV() ) {
     fEventAction->Addvetobox(edep,stepLength);
   }
+
+  if ( volume == fDetConstruction->Getcalorbox3PV() ) {
+    fEventAction->Addcalorbox3(edep,stepLength);
+  }
 }
 
 //....oooOO0OOooo........oooOO0OOooo........oooOO0OOooo........oooOO0OOooo......

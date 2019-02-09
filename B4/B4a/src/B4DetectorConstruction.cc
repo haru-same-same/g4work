@@ -61,6 +61,7 @@ G4GlobalMagFieldMessenger* B4DetectorConstruction::fMagFieldMessenger = nullptr;
 B4DetectorConstruction::B4DetectorConstruction()
  : G4VUserDetectorConstruction(),
    fvetoboxPV(nullptr),
+   fcalorbox3PV(nullptr),
    fAbsorberPV(nullptr),
    fGapPV(nullptr),
    fCheckOverlaps(true)
@@ -116,15 +117,15 @@ void B4DetectorConstruction::DefineMaterials()
 G4VPhysicalVolume* B4DetectorConstruction::DefineVolumes()
 {
   // Geometry parameters
-  G4int nofLayers = 50;
+  G4int nofLayers = 100;
   G4double absoThickness = 2.*mm;
   G4double gapThickness =  2.*mm;
   G4double calorSizeXY  = 20.*cm;
 
   auto layerThickness = absoThickness + gapThickness;
   auto calorThickness = nofLayers * layerThickness;
-  auto worldSizeXY = 60*cm;
-  auto worldSizeZ  = 60*cm; 
+  auto worldSizeXY = 80*cm;
+  auto worldSizeZ  = 80*cm; 
   
   // Get materials
   auto defaultMaterial = G4Material::GetMaterial("Galactic");
@@ -167,7 +168,7 @@ G4VPhysicalVolume* B4DetectorConstruction::DefineVolumes()
   //
   auto vetobox
     = new G4Box("vetobox",
-                 25*cm,25*cm,25*cm);
+                 35*cm,35*cm,35*cm);
  
   auto vetoboxLV
     = new G4LogicalVolume(
@@ -185,6 +186,95 @@ G4VPhysicalVolume* B4DetectorConstruction::DefineVolumes()
                  false,
                  0,
                  fCheckOverlaps);
+ 
+  //                               
+  // Calorbox3
+  //  
+  auto calorbox3
+    = new G4Box("Calorbox3",     // its name
+                 calorSizeXY, calorSizeXY, calorThickness/2); // its size
+                         
+  auto calorbox3LV
+    = new G4LogicalVolume(
+                 calorbox3,     // its solid
+                 defaultMaterial,  // its material
+                 "Calorbox3");   // its name
+                                   
+  fcalorbox3PV
+    = new G4PVPlacement(
+                 0,                // no rotation
+                 G4ThreeVector(),  // at (0,0,0)
+                 calorbox3LV,          // its logical volume                         
+                 "Calorbox3",    // its name
+                 vetoboxLV,        // its mother  volume
+                 false,            // no boolean operation
+                 0,                // copy number
+                 fCheckOverlaps);  // checking overlaps 
+
+  //                               
+  // Calorbox2
+  //  
+  auto calorbox2
+    = new G4Box("Calorbox2",     // its name
+                 calorSizeXY/2, calorSizeXY, calorThickness/2); // its size
+                         
+  auto calorbox2LV
+    = new G4LogicalVolume(
+                 calorbox2,     // its solid
+                 defaultMaterial,  // its material
+                 "Calorbox2");   // its name
+                                   
+  new G4PVReplica(
+                  "calorbox2",
+                  calorbox2LV,
+                  calorbox3LV,
+                  kXAxis,
+                  2,
+                  calorSizeXY);
+
+  //                               
+  // Calorbox
+  //  
+  auto calorbox
+    = new G4Box("Calorbox",     // its name
+                 calorSizeXY/2, calorSizeXY, calorThickness/2); // its size
+                         
+  auto calorboxLV
+    = new G4LogicalVolume(
+                 calorbox,     // its solid
+                 defaultMaterial,  // its material
+                 "Calorbox");   // its name
+                                   
+  new G4PVPlacement(
+                 0,                // no rotation
+                 G4ThreeVector(),  // at (0,0,0)
+                 calorboxLV,          // its logical volume                         
+                 "Calorbox",    // its name
+                 calorbox2LV,        // its mother  volume
+                 false,            // no boolean operation
+                 0,                // copy number
+                 fCheckOverlaps);  // checking overlaps 
+
+  //
+  //calroculster
+  //
+  auto calorcluster
+    = new G4Box("calorcluster",
+                 calorSizeXY/2,calorSizeXY/2,calorThickness/2);
+
+  auto calorclusterLV
+    = new G4LogicalVolume(
+                 calorcluster,
+                 defaultMaterial,
+                 "calorcluster");
+
+  new G4PVReplica(
+                  "calorcluster",
+                  calorclusterLV,
+                  calorboxLV,
+                  kYAxis,
+                  2,
+                  calorSizeXY);
 
   //                               
   // Calorimeter
@@ -204,7 +294,7 @@ G4VPhysicalVolume* B4DetectorConstruction::DefineVolumes()
                  G4ThreeVector(),  // at (0,0,0)
                  calorLV,          // its logical volume                         
                  "Calorimeter",    // its name
-                 vetoboxLV,        // its mother  volume
+                 calorclusterLV,        // its mother  volume
                  false,            // no boolean operation
                  0,                // copy number
                  fCheckOverlaps);  // checking overlaps 

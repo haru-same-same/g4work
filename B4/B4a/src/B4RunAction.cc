@@ -69,6 +69,7 @@ B4RunAction::B4RunAction()
   analysisManager->CreateH1("Labsgap","trackL in abs+gap" , 100, 0., 10*cm);
   analysisManager->CreateH1("Evetobox","Edep in vetobox" , 100, 0. ,70*MeV);
   analysisManager->CreateH1("Lvetobox","trackL in vetobox" , 100, 0., 10*cm);
+  analysisManager->CreateH1("Ecalorbox3","Edep in calorbox3" , 100, 0., 70*MeV);
 
   // Creating ntuple
   //
@@ -81,6 +82,7 @@ B4RunAction::B4RunAction()
   analysisManager->CreateNtupleDColumn("Labsgap");
   analysisManager->CreateNtupleDColumn("Evetobox");
   analysisManager->CreateNtupleDColumn("Lvetobox");
+  analysisManager->CreateNtupleDColumn("Ecalorbox3");
   analysisManager->FinishNtuple();
 }
 

@@ -64,6 +64,7 @@ class B4DetectorConstruction : public G4VUserDetectorConstruction
     // get methods
     //
     const G4VPhysicalVolume* GetvetoboxPV() const;
+    const G4VPhysicalVolume* Getcalorbox3PV() const;
     const G4VPhysicalVolume* GetAbsorberPV() const;
     const G4VPhysicalVolume* GetGapPV() const;
      
@@ -79,6 +80,7 @@ class B4DetectorConstruction : public G4VUserDetectorConstruction
                                       // magnetic field messenger
      
     G4VPhysicalVolume*   fvetoboxPV;      // the gap physical volume
+    G4VPhysicalVolume*   fcalorbox3PV;      // the gap physical volume
     G4VPhysicalVolume*   fAbsorberPV; // the absorber physical volume
     G4VPhysicalVolume*   fGapPV;      // the gap physical volume
     
@@ -89,6 +91,10 @@ class B4DetectorConstruction : public G4VUserDetectorConstruction
 //
 inline const G4VPhysicalVolume* B4DetectorConstruction::GetvetoboxPV() const  { 
   return fvetoboxPV; 
+}
+
+inline const G4VPhysicalVolume* B4DetectorConstruction::Getcalorbox3PV() const  { 
+  return fcalorbox3PV; 
 }
 
 inline const G4VPhysicalVolume* B4DetectorConstruction::GetAbsorberPV() const { 

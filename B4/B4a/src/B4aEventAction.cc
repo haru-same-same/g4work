@@ -45,9 +45,11 @@ B4aEventAction::B4aEventAction()
  : G4UserEventAction(),
    fEnergyAbs(0.),
    fEnergyGap(0.),
+   fEnergycalorbox3(0.),
    fEnergyvetobox(0.),
    fTrackLAbs(0.),
    fTrackLGap(0.),
+   fTrackLcalorbox3(0.),
    fTrackLvetobox(0.)
 {}
 
@@ -63,9 +65,11 @@ void B4aEventAction::BeginOfEventAction(const G4Event* /*event*/)
   // initialisation per event
   fEnergyAbs = 0.;
   fEnergyGap = 0.;
+  fEnergycalorbox3 = 0.;
   fEnergyvetobox = 0.;
   fTrackLAbs = 0.;
   fTrackLGap = 0.;
+  fTrackLcalorbox3 = 0.;
   fTrackLvetobox = 0.;
 }
 
@@ -88,6 +92,7 @@ void B4aEventAction::EndOfEventAction(const G4Event* event)
   analysisManager->FillH1(5, fTrackLAbs+fTrackLGap);
   analysisManager->FillH1(6, fEnergyvetobox);
   analysisManager->FillH1(7, fTrackLvetobox);
+  analysisManager->FillH1(8, fEnergycalorbox3);
 
   // fill ntuple
   analysisManager->FillNtupleDColumn(0, fEnergyAbs);
@@ -98,6 +103,7 @@ void B4aEventAction::EndOfEventAction(const G4Event* event)
   analysisManager->FillNtupleDColumn(5, fTrackLAbs+fTrackLGap);
   analysisManager->FillNtupleDColumn(6, fEnergyvetobox);
   analysisManager->FillNtupleDColumn(7, fTrackLvetobox);
+  analysisManager->FillNtupleDColumn(8, fEnergycalorbox3);
   analysisManager->AddNtupleRow();  
   
   // Print per event (modulo n)
