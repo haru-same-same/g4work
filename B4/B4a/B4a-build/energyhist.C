@@ -13,10 +13,14 @@
   TFile f("B4.root");
 
   // Create a canvas and divide it into 2x2 pads
-  TCanvas* c1 = new TCanvas("c1", "", 0, 0, 500, 500);
+  TCanvas* c1 = new TCanvas("c1", "", 0, 0, 700, 600);
   
   // Draw Eabs histogram in the pad 1
   c1->cd(1);
   TH1D* hist1 = (TH1D*)f.Get("Eabsgap");
+  hist1->SetTitle("Energy deposit in scintillator;Energy[MeV];count;");
+  hist1->GetYaxis()->SetTitleOffset(1.35);
+  gPad->SetLeftMargin(0.15);
+  gPad->SetRightMargin(0.10);
   hist1->Draw("HIST");
 }
