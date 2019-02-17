@@ -24,7 +24,5 @@
 /vis/viewer/set/autoRefresh true
 /vis/viewer/refresh
 /vis/verbose warnings
-/gun/particle mu-
-/gun/position 0 0 0
-/run/beamOn 10000
-/vis/scene/notifyHandlers scene-0
+/vis/viewer/set/viewpointThetaPhi 20 70
+/vis/viewer/refresh

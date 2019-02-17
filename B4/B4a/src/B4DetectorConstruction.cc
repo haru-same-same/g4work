@@ -117,7 +117,7 @@ void B4DetectorConstruction::DefineMaterials()
 G4VPhysicalVolume* B4DetectorConstruction::DefineVolumes()
 {
   // Geometry parameters
-  G4int nofLayers = 100;
+  G4int nofLayers = 150;
   G4double absoThickness = 2.*mm;
   G4double gapThickness =  2.*mm;
   G4double calorSizeXY  = 20.*cm;
@@ -192,7 +192,7 @@ G4VPhysicalVolume* B4DetectorConstruction::DefineVolumes()
   //  
   auto calorbox3
     = new G4Box("Calorbox3",     // its name
-                 calorSizeXY, calorSizeXY, calorThickness/2); // its size
+                 calorSizeXY*3/2, calorSizeXY*3/2, calorThickness/2); // its size
                          
   auto calorbox3LV
     = new G4LogicalVolume(
@@ -216,7 +216,7 @@ G4VPhysicalVolume* B4DetectorConstruction::DefineVolumes()
   //  
   auto calorbox2
     = new G4Box("Calorbox2",     // its name
-                 calorSizeXY/2, calorSizeXY, calorThickness/2); // its size
+                 calorSizeXY/2, calorSizeXY*3/2, calorThickness/2); // its size
                          
   auto calorbox2LV
     = new G4LogicalVolume(
@@ -229,7 +229,7 @@ G4VPhysicalVolume* B4DetectorConstruction::DefineVolumes()
                   calorbox2LV,
                   calorbox3LV,
                   kXAxis,
-                  2,
+                  3,
                   calorSizeXY);
 
   //                               
@@ -237,7 +237,7 @@ G4VPhysicalVolume* B4DetectorConstruction::DefineVolumes()
   //  
   auto calorbox
     = new G4Box("Calorbox",     // its name
-                 calorSizeXY/2, calorSizeXY, calorThickness/2); // its size
+                 calorSizeXY/2, calorSizeXY*3/2, calorThickness/2); // its size
                          
   auto calorboxLV
     = new G4LogicalVolume(
@@ -273,7 +273,7 @@ G4VPhysicalVolume* B4DetectorConstruction::DefineVolumes()
                   calorclusterLV,
                   calorboxLV,
                   kYAxis,
-                  2,
+                  3,
                   calorSizeXY);
 
   //                               
